@@ -5,126 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Simple Calculator</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <div id="calculator">
-            <div id="result">
-                <div id="history">
-                    <p id="history-value"></p>
-                </div>
-                <div id="output">
-                    <p id="output-value"></p>
-                </div>
-            </div>
+
+           <form action="" name="calculator">
+            <input type="text" name="screen" disabled id="">
+            
             <div id="keyboard">
-                <button class="operator" id="clear">C</button>
-                <button class="operator" id="backspace">CE</button>
-                <button class="operator" id="%">%</button>
-                <button class="operator" id="/">&#247;</button>
-                <button class="number" id="7">7</button>
-                <button class="number" id="8">8</button>
-                <button class="number" id="9">9</button>
-                <button class="operator" id="*">&times;</button>
-                <button class="number" id="4">4</button>
-                <button class="number" id="5">5</button>
-                <button class="number" id="6">6</button>
-                <button class="operator" id="-">-</button>
-                <button class="number" id="3">3</button>
-                <button class="number" id="2">2</button>
-                <button class="number" id="1">1</button>
-                <button class="operator" id="+">+</button>
-                <button class="empty" id="empty"></button>
-                <button class="number" id="0">0</button>
-                <button class="empty" id="empty"></button>
-                <button class="operator" id="=">=</button>
+                <input type="button" value="C" class="operator" onclick="calculator.screen.value = ''">
+                <input type="button" value="CE" class="operator"  onclick="calculator.screen.value = calculator.screen.value.slice(0,-1)">
+                <input type="button" value="%" class="operator" onclick="calculator.screen.value += '%'" >
+                <input type="button" value="/" class="operator" onclick="calculator.screen.value += '/'">
+                <input type="button" value="7" class="number" onclick="calculator.screen.value += '7'">
+                <input type="button" value="8" class="number" onclick="calculator.screen.value += '8'">
+                <input type="button" value="9" class="number" onclick="calculator.screen.value += '9'">
+                <input type="button" value="*" class="operator" onclick="calculator.screen.value += '*'">
+                <input type="button" value="4" class="number" onclick="calculator.screen.value += '4'">
+                <input type="button" value="5" class="number" onclick="calculator.screen.value += '5'">
+                <input type="button" value="6" class="number" onclick="calculator.screen.value += '6'">
+                <input type="button" value="-" class="operator" onclick="calculator.screen.value += '-'">
+                <input type="button" value="1" class="number" onclick="calculator.screen.value += '1'">
+                <input type="button" value="2" class="number" onclick="calculator.screen.value += '2'">
+                <input type="button" value="3" class="number" onclick="calculator.screen.value += '3'">
+                <input type="button" value="+" class="number" onclick="calculator.screen.value += '+'">
+                <input type="button" value="0" class="number" onclick="calculator.screen.value += '0'">
+                <input type="button" value="." class="number" onclick="calculator.screen.value += '.'">
+                <input type="button" value="&radic;" class="number" onclick="calculator.screen.value = Math.sqrt(calculator.screen.value)">
+                <input type="button" value="=" class="number" onclick="calculator.screen.value = eval(calculator.screen.value)">
             </div>
 
-        </div>
-    </div>
-
-    <script>
-        function getHistory(params) {
-   return document.getElementById("history-value").innerText;
-}
-function printHistory(num) {
-     document.getElementById("history-value").innerText = num;
-}
-function getOutput(params) {
-    return document.getElementById("output-value").innerText;
-}
-function printOutput(num) {
-    if (num == "") {
-        document.getElementById("output-value").innerText=num;
-    }else{
-        document.getElementById("output-value").innerText= getFormattedNumbers (num);
-
-    }
-    
-}
-
-
-function getFormattedNumbers(num) {
-    var n = Number(num);
-    var value = n.toLocaleString("en");
-    return value;
-}
-
-
-function reversNumberFormat(num) {
-    return Number(num.replace(/,/g,''));
-}
-// console.log(reversNumberFormat(getOutput()));
-var operator = document.getElementsByClassName("operator");
-for (let i = 0; i < operator.length; i++) {
-    const element = operator[i];
-    element.addEventListener("click", function () {
-     if (this.id=="clear") {
-         printHistory("");
-         printOutput("");
-     }if (this.id=="backspace") {
-         var output = reversNumberFormat(getOutput()).toString();
-         if (output) {
-             output=output.substr(0,output.length-1);
-             printOutput(output);
-         }else{
-             var output =getOutput();
-             var history = getHistory();
-             if (output!="") {
-                 output=reversNumberFormat(output);
-                 history= history+output;
-                 
-                 if (this.id=="=") {
-                     var result = eval(history);
-                     printOutput(result);
-                     printHistory("");
-                 }
-                 else{
-                     history=history+this.id;
-                     printHistory(history);
-                     printOutput("")
-                 }
-             }
-         }
-     }
-    });
-};
-
-var number = document.getElementsByClassName("number");
-for (let i = 0; i < number.length; i++) {
-    const element = number[i];
-    element.addEventListener("click" , function () {
-       var output = reversNumberFormat(getOutput());
-       if (output!=NaN) {
-           output=output+this.id;
-           printOutput(output);
-       }
         
-    });
-};
+        </form>
+    </div>
+</div>
 
-// printOutput("88888");
-    </script>
+   
 </body>
 </html>

@@ -7,7 +7,6 @@ body {
     background-image: linear-gradient(45deg, black, #101010c2);
     
 }
-
 #calculator {
     width: 320px;
     height: 485px;
@@ -17,20 +16,16 @@ body {
     position: relative;
     border-radius: 10px;
 }
-
 #result{
     height: 120px;
 }
-input[type="text"] {
-    font-family: 'Orbitron', sans-serif;
+#history{
     text-align: right;
-    height: 50px;
-    width: 274px;
-    margin: 20px;
+    height: 20px;
+    margin: 0 20px;
     padding-top: 20px;
-    font-size: 25px;
-    color: #040404;
-    background-color: white;
+    font-size: 15px;
+    color: #919191;
 }
 #output{
     text-align: right;
